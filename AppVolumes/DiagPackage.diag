@@ -1,0 +1,1133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dcmPS:DiagnosticPackage SchemaVersion="1.0" Localized="true" xmlns:dcmPS="http://www.microsoft.com/schemas/dcm/package/2007" xmlns:dcmRS="http://www.microsoft.com/schemas/dcm/resource/2007">
+    <DiagnosticIdentification>
+        <ID>90bcf09d-e077-47a6-ae81-bb0416ef8286</ID>
+        <Version>1.0</Version>
+    </DiagnosticIdentification>
+    <DisplayInformation>
+        <Parameters />
+        <Name>
+            <dcmRS:LocalizeResourceElement comment="Comment" index="1">VMware App Volumes Diagnostic</dcmRS:LocalizeResourceElement>
+        </Name>
+        <Description>
+            <dcmRS:LocalizeResourceElement comment="This is a comment" index="3">The VMware App Volumes diagnostic will collect data that would help troubleshoot errors with App Volumes</dcmRS:LocalizeResourceElement>
+        </Description>
+    </DisplayInformation>
+    <PrivacyLink>https://www.vmware.com/help/privacy</PrivacyLink>
+    <PowerShellVersion>2.0</PowerShellVersion>
+    <SupportedOSVersion clientSupported="true" serverSupported="true">6.1</SupportedOSVersion>
+    <Troubleshooter>
+        <Script>
+            <Parameters />
+            <ProcessArchitecture>Any</ProcessArchitecture>
+            <RequiresElevation>true</RequiresElevation>
+            <RequiresInteractivity>true</RequiresInteractivity>
+            <FileName>Global_Troubleshooter.ps1</FileName>
+            <ExtensionPoint />
+        </Script>
+        <ExtensionPoint>
+            <InteractionIDList>
+                <InteractionID>I_SaveReport</InteractionID>
+                <InteractionID>I_SelectFile</InteractionID>
+            </InteractionIDList>
+        </ExtensionPoint>
+    </Troubleshooter>
+    <Rootcauses>
+        <Rootcause>
+            <ID>RC_AppVolumesServiceNotRunning</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="4">App Volumes Service is not running</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="7">App Volumes Service (svservice) is not running</dcmRS:LocalizeResourceElement>
+                </Description>
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>BD9F02F5-0294-43E5-96FB-34D11E7B49DB</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="5">Attempt to start App Volumes Service</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="8">Attempt to start App Volumes Service (svservice)</dcmRS:LocalizeResourceElement>
+                        </Description>
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_StartAppVolumesService.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters />
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>TS_AppVolumesService.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>SaveReport</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="6">Save Diagnostics Report</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="9">Saving Diagnostics Report</dcmRS:LocalizeResourceElement>
+                </Description>
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>673E19B5-6584-4866-BDDA-6C3D6C2F6388</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="10">Save Diagnostics Report</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters></Parameters>
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>false</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_SaveReport.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint>
+                        <InteractionIDList></InteractionIDList>
+                    </ExtensionPoint>
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters></Parameters>
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>true</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>VF_SaveReport.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_AppVolumesServiceDisabled</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="16">App Volumes Service is Disabled</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>388D4ED6-5F2B-43B3-B238-711AE00CD109</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="17">RS_EnableAppVolumesService</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_AppVolumesServiceDisabled.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters />
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>VF_RC_AppVolumesServiceDisabled.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_AppVolumesServiceNotInstalled</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="18">App Volumes Service is Not Installed</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>8A9D634D-BA15-4C69-8617-4EE533D7088C</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="19">Install App Volumes Service</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>true</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_AppVolumesServiceNotInstalled.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters />
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>VF_RC_AppVolumesServiceNotInstalled.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_HighHandleCount</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="20">One or more processes are using a high number of handles</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description></Description>
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>20D1E39E-7825-4EDC-B1E9-06F675DD8B87</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="22">A process is allocating a high number of handles and this may cause performance problems.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_HighHandleCount.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_KernelMemoryPerformanceIssue</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="21">Possible Kernel Memory performance related problem</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>884EBF60-89B9-49C9-82B5-2F39D6D679E7</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="23">The memory allocated by one or more paged and nonpaged pool tags is higher than the average and may cause performance problems.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_KernelMemoryPerformanceIssue.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_LowSysPTEs</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="24">This system is currently running under low System PTEs</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>AD1D66F5-FB6E-442E-8AAD-C0692333CC26</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="25">This system is currently running under a low number of System Page Table Entries (System PTEs). This can cause different performance problems. Please see the article indicated for additional information.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_LowSysPTEs.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_LowVirtualMemory</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="26">This system is currently running under low Virtual Memory</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>419B7C60-F956-4A40-9B8E-B1A9A271D321</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="27">This system is currently running under a low Virtual Memory condition. This condition usually indicates a performance problems. Please see the article indicated for additional information.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_LowVirtualMemory.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_GetEvents</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="28">Event Logs Messages</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="30">One or more relevant event log messages were detected</dcmRS:LocalizeResourceElement>
+                </Description>
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>A28E5527-2914-4A3F-B2D1-A3AFB6A97E52</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="29">Event Logs message detection</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>false</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_GetEvents.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_PrintInfo</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="31">Print Drivers and Printers information</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>0E184026-24C3-42F2-86FA-5E839405D4C3</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="32">Relevant information about printers and print drivers</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_PrintInfo.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_4KDriveDetected</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="33">Detect Advanced Format Drives</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>AACD711C-6AEF-4DAE-981E-9C67A665BDFC</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="34">One or more Advanced Format Disks detected</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>false</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_4KDriveDetected.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_4KNativeDriveDetected</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="35">Detect Native 4K drives on the system</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>30F88DF7-10E3-44DE-8538-0AA2A6F12564</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="36">One or more 4K native drives were detected in this system. Currently these drives are not supported on any released operating system. Please review the Information Collected information to identify these drives and read the article indicated for more information.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>false</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_4KNativeDriveDetected.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_KB982018IsNotInstalled</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="37">KB982018 is not installed or files are outdated</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="38">Since this machine has one or more 4KB (Advanced Format) Disks, you are required to install KB 982018 to avoid problems described on the article. This diagnostic detected that one or more files are outdated.</dcmRS:LocalizeResourceElement>
+                </Description>
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>30F88DF7-10E3-44DE-8538-0AA2A6F12564</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="39">Check if update that improves the compatibility of Windows 7 and Windows Server 2008 R2 with Advanced Format Disks (KB 982018) is installed when advanced disk formats are detected.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>false</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_KB982018IsNotInstalled.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_SplitIO</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="40">Detect Split IO Problems</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver1</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="41">Physical or Logical Disk Split IO problems.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="42">Logical disk or physical disk split I/O operations can be the result of heavily fragmented volumes, or can indicate that a better performing disk solution is needed for the scenario that are being used for. To resolve the issue defragment the volumes, distribute client load if possible to other volumes or hosts, or replace with better performing hardware.</dcmRS:LocalizeResourceElement>
+                        </Description>
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_SplitIO.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_SBSL_MCAfee_EEPC_SlowBoot</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="43">Check for McAfee Endpoint Encryption version which may cause slow boot issues</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="44">A version of McAfee Endpoint Encryption for PCs (EEPC) that is known to cause slow boot issues was detected in this machine. This version may cause slow boot or delay between CTRL+ALT+DEL and Credential logon dialog. For additional information see the referenced article.</dcmRS:LocalizeResourceElement>
+                </Description>
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver2</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="45">Check for McAfee Endpoint Encryption version which may cause slow boot issues</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="46">A version of McAfee Endpoint Encryption for PCs (EEPC) that is known to cause slow boot issues was detected in this machine. This version may cause slow boot or delay between CTRL+ALT+DEL and Credential logon dialog. For additional information see the referenced article.</dcmRS:LocalizeResourceElement>
+                        </Description>
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_SBSL_MCAfee_EEPC_SlowBoot.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_SEPProcessHandleLeak</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="47">Check for specific version of SEP that may cause handle leak</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver3</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="48">A version of Symantec Endpoint Protection (SEP) 11.x known for causing handle leaks was detected in this machine in addition to a high number of handles used by SEP processes. This problem may cause performance problems - including making the server run out of resources. Consider updating Symantec Endpoint Protection to a newer version.  Symantec Endpoint Protection v11 RU7 MP1 (11.0.7101.1056) or newer.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_SEPProcessHandleLeak.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_RPCUnauthenticatedSessions</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="49">Check RPC settings for allowing unauthenticated sessions</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver4</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="50">The computer is set in registry or group policy to disallow unauthenticated RPC sessions to complete.  This setting can result in a variety of benign actions to fail, where they might otherwise succeed using Kerberos authentication.  This setting also leads to a de facto enforcement of NTLM authentication since that is the only method that supports authenticated endpoint negotiation. If remote connections using RPC are failing for the customer then this setting should be set to 0 (zero). If they are not failing this setting should be brought to the customers attention so they can consider relaxing it. For more information, please see the referenced article</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_RPCUnauthenticatedSessions.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_NTFSMetafilePerfCheck</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="51">Check for Performance counters to see if there is an issue with NTFS metafile cache memory consumption</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver5</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="52">The Memory\System Cache Resident Bytes performance counter is currently high, while the available memory is currently low. This may indicate that the NTFS metafile cache may be consuming most of the RAM. Please read the referenced internal article for information on how to confirm and fix this issue.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_NTFSMetafilePerfCheck.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters />
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>VF_RC_NTFSMetafilePerfCheck.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_PagedPoolD2dSymEvent</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="53">Check pool memory allocated for 'D2d' tag</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver6</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="54">Windows Server 2003 x86 server may run out of paged pool memory due to a problem with Symantec's symevent.sys driver which ca 'D2d' paged pool memory to be one of the top allocated tags. The server system event log may also record srv events ID 2020 and the server may become unresponsive.  For more information, see see the article referenced.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_PagedPoolD2dSymEvent.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters />
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>VF_RC_PagedPoolD2dSymEvent.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_KernelTagTokeKB982010</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="55">Check pool memory allocated for 'D2d' tag</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver7</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="56">Windows Server 2003 x86 server may run out of paged pool memory due to a problem with Symantec's symevent.sys driver which ca 'D2d' paged pool memory to be one of the top allocated tags. The server system event log may also record srv events ID 2020 and the server may become unresponsive.  For more information, see see the article referenced.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_KernelTagTokeKB982010.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters />
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>VF_RC_KernelTagTokeKB982010.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_KernelTagRxM4SeTIKB2647452</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="57">Check pool memory allocated for RxM4 and SeTI tag</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver8</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="58">A paged pool leak detected in either the RxM4 or SeTI pool tags possibly due to frequently mapping and disconnecting a network drive. If you frequently map and then disconnect a network drive on a computer that is running Windows 7 or Windows Server 2008 R2 or you provide explicit credentials instead of using the user account that is currently logged on when you map the network drive, the memory usage of the paged pool keeps increasing on the computer. After a while, the available memory is exhausted and all the running applications or services stop working. You may experience situations where the server stops responding or you may experience various Stop errors. You have to restart the computer to recover from this issue. Please see the information in the associated content for more information on how to fix this problem</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_KernelTagRxM4SeTIKB2647452.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters />
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>VF_RC_KernelTagRxM4SeTIKB2647452.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_KernelTagSslCKB2585542</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="59">Check pool memory allocated for 'SslC' tag</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver9</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="60">Low virtual memory condition/ high kernel memory usage has been detected due to SslC paged pool consumption. You may resolve this by installing security updae from the article referenced.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_KernelTagSslCKB2585542.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters />
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>true</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>VF_RC_KernelTagSslCKB2585542.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_BASPNPPLeakCheck</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="61">Check for Broadcom Advanced Server Program driver information</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver10</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="62">A version of Broadcom Advanced Server Program driver known to cause memory leaks was detected in the machine. Please consider updating the Broadcom Advanced Server Program software to a newer version.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_BASPNPPLeakCheck.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters />
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>VF_RC_BASPNPPLeakCheck.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_AladdinDeviceDriversCheck</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="63">Detect Aladdin Knowledge Systems Device Drivers</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver11</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="64">Aladdin Knowledge Systems Device Drivers hardlock.sys 3.42.x and aksdf.sys 1.11.x were detected in this machine. These drivers are known to cause memory leak and Event ID 333 or 2019 on X64 version of Windows Server 2003 or Windows Server 2008 R2. To resolve the memory leak, disable the hardlock.sys and askdf.sys drivers, update the Aladdin Knowledge Systems software or remove the Aladdin Knowledge Systems software. For additional information please see referenced article.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_AladdinDeviceDriversCheck.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters />
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>VF_RC_AladdinDeviceDriversCheck.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_ALPCandPowerManagementPoolCheck</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="65">Detect Pool Memory Allocation for ALPC and Power Management</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver12</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="66">ALPC and Power Management are consuming high Pool resources</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="67">It was detected on this machine that ALPC and Power Management may be performing many I/O operations to a network share, consuming high Pool resources, and this will cause a Machine stops responding. For more information please see the referenced article</dcmRS:LocalizeResourceElement>
+                        </Description>
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>false</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_ALPCandPowerManagementPoolCheck.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint>
+                        <RootCause>ALPC and Power Management are consuming high Pool resources</RootCause>
+                        <HighLevelLogic></HighLevelLogic>
+                        <Symptom></Symptom>
+                        <InternalContentURL></InternalContentURL>
+                        <PublicContentURL>http://support.microsoft.com/kb/2582112</PublicContentURL>
+                        <Visibility>4</Visibility>
+                        <SupportTopicsID>18556</SupportTopicsID>
+                        <MessageVersion>1</MessageVersion>
+                        <AlertType>Error</AlertType>
+                    </ExtensionPoint>
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters />
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>VF_RC_ALPCandPowerManagementPoolCheck.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+    </Rootcauses>
+    <Interactions>
+        <SingleResponseInteractions>
+            <SingleResponseInteraction>
+                <AllowDynamicResponses>false</AllowDynamicResponses>
+                <Choices>
+                    <Choice>
+                        <DisplayInformation>
+                            <Parameters />
+                            <Name>
+                                <dcmRS:LocalizeResourceElement comment="This is a comment" index="12">Yes</dcmRS:LocalizeResourceElement>
+                            </Name>
+                            <Description />
+                        </DisplayInformation>
+                        <Value>true</Value>
+                        <ExtensionPoint />
+                    </Choice>
+                    <Choice>
+                        <DisplayInformation>
+                            <Parameters />
+                            <Name>
+                                <dcmRS:LocalizeResourceElement comment="This is a comment" index="13">No</dcmRS:LocalizeResourceElement>
+                            </Name>
+                            <Description />
+                        </DisplayInformation>
+                        <Value>false</Value>
+                        <ExtensionPoint />
+                    </Choice>
+                </Choices>
+                <ID>I_SaveReport</ID>
+                <DisplayInformation>
+                    <Parameters />
+                    <Name>
+                        <dcmRS:LocalizeResourceElement comment="This is a comment" index="11">Do you want to save a diagnostic report?</dcmRS:LocalizeResourceElement>
+                    </Name>
+                    <Description>
+                        <dcmRS:LocalizeResourceElement comment="This is a comment" index="14">Do you want to save a diagnostic report?s</dcmRS:LocalizeResourceElement>
+                    </Description>
+                </DisplayInformation>
+                <ContextParameters />
+                <ExtensionPoint />
+            </SingleResponseInteraction>
+        </SingleResponseInteractions>
+        <MultipleResponseInteractions />
+        <TextInteractions>
+            <TextInteraction>
+                <RegularExpression></RegularExpression>
+                <ID>I_SelectFile</ID>
+                <DisplayInformation>
+                    <Parameters />
+                    <Name>
+                        <dcmRS:LocalizeResourceElement comment="This is a comment" index="15">Select Report Location</dcmRS:LocalizeResourceElement>
+                    </Name>
+                    <Description />
+                </DisplayInformation>
+                <ContextParameters />
+                <ExtensionPoint>
+                    <EditMode />
+                    <Browse>Folder</Browse>
+                </ExtensionPoint>
+            </TextInteraction>
+        </TextInteractions>
+        <PauseInteractions />
+        <LaunchUIInteractions></LaunchUIInteractions>
+    </Interactions>
+    <ExtensionPoint>
+        <Maintenance />
+        <PackageLocations />
+        <Icon>
+            <dcmRS:IconResourceElement comment="" index="2">CloudVolumes.ico</dcmRS:IconResourceElement>
+        </Icon>
+    </ExtensionPoint>
+</dcmPS:DiagnosticPackage>

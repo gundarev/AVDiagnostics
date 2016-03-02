@@ -1,0 +1,5 @@
+SDMC.EXE: informational 0x00000000 : Clean directory 'C:\source\AVDiagnostics\AppVolumesAgentDiag\output'.
+SDMC.EXE: informational 0x00000000 : The .xsd files passed validation.
+SDMC.EXE: informational 0x00000000 : The XML file 'C:\source\AVDiagnostics\AppVolumesAgentDiag\output\AppVolumesAgentDiag.diagpkg' passed .xsd validation.
+SDMC.EXE: informational 0x00000000 : All script files in 'C:\source\AVDiagnostics\AppVolumesAgentDiag\output' have been verified to exist.
+SDMC.EXE: Manifest compilation is complete: 1 error(s), 0 warning(s).

@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dcmPS:AdvDiagnosticPackage SchemaVersion="1.0" Localized="true" xmlns:dcmPS="http://www.microsoft.com/schemas/dcm/package/2007" xmlns:dcmRS="http://www.microsoft.com/schemas/dcm/resource/2007">
+    <DiagnosticIdentification>
+        <ID>96dae290-dfce-4b87-bf15-ec84e722e160</ID>
+        <Version>1.0</Version>
+    </DiagnosticIdentification>
+    <DisplayInformation>
+        <Parameters />
+        <Name>
+            <dcmRS:LocalizeResourceElement comment="Comment" index="1">App Volumes Agent Diagnostics</dcmRS:LocalizeResourceElement>
+        </Name>
+        <Description>
+            <dcmRS:LocalizeResourceElement comment="This is a comment" index="3">This diagnostic pack verifies App Volumes Agent configuration</dcmRS:LocalizeResourceElement>
+        </Description>
+    </DisplayInformation>
+    <PrivacyLink>https://www.vmware.com/help/privacy</PrivacyLink>
+    <PowerShellVersion>2.0</PowerShellVersion>
+    <SupportedOSVersion clientSupported="true" serverSupported="true">6.1</SupportedOSVersion>
+    <Rootcauses>
+        <Rootcause>
+            <ID>RC_ServiceNotRunning</ID>
+            <DisplayInformation>
+                <Parameters>
+                    <Parameter>
+                        <Name>serviceName</Name>
+                        <DefaultValue>svservice</DefaultValue>
+                    </Parameter>
+                </Parameters>
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="4">App Volumes Service is not running</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="5">App Volumes Service (svservice) is not running</dcmRS:LocalizeResourceElement>
+                </Description>
+            </DisplayInformation>
+            <Troubleshooter>
+                <Script>
+                    <Parameters>
+                        <Parameter>
+                            <Name>serviceName</Name>
+                            <DefaultValue>svservice</DefaultValue>
+                        </Parameter>
+                    </Parameters>
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>TS_RC_ServiceNotRunning.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Troubleshooter>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver2</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="6">Attempt to start App Volumes Service</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="7">Attempt to start App Volumes Service (svservice)</dcmRS:LocalizeResourceElement>
+                        </Description>
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters>
+                            <Parameter>
+                                <Name>serviceName</Name>
+                                <DefaultValue>svservice</DefaultValue>
+                            </Parameter>
+                        </Parameters>
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_ServiceNotRunning.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters>
+                        <Parameter>
+                            <Name>serviceName</Name>
+                            <DefaultValue>svservice</DefaultValue>
+                        </Parameter>
+                    </Parameters>
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>TS_RC_ServiceNotRunning.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_ServiceDisabled</ID>
+            <DisplayInformation>
+                <Parameters>
+                    <Parameter>
+                        <Name>serviceName</Name>
+                        <DefaultValue>svservice</DefaultValue>
+                    </Parameter>
+                </Parameters>
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="8">App Volumes Service is Disabled</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="9">App Volumes Service (svservice) is disabled</dcmRS:LocalizeResourceElement>
+                </Description>
+            </DisplayInformation>
+            <Troubleshooter>
+                <Script>
+                    <Parameters>
+                        <Parameter>
+                            <Name>serviceName</Name>
+                            <DefaultValue>svservice</DefaultValue>
+                        </Parameter>
+                    </Parameters>
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>TS_RC_ServiceNotRunning.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Troubleshooter>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver1</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="10">Attempt to start App Volumes Service</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="11">Attempt to start App Volumes Service (svservice)</dcmRS:LocalizeResourceElement>
+                        </Description>
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters>
+                            <Parameter>
+                                <Name>serviceName</Name>
+                                <DefaultValue>svservice</DefaultValue>
+                            </Parameter>
+                        </Parameters>
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_ServiceNotRunning.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters>
+                        <Parameter>
+                            <Name>serviceName</Name>
+                            <DefaultValue>svservice</DefaultValue>
+                        </Parameter>
+                    </Parameters>
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>TS_RC_ServiceNotRunning.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_ServiceNotInstalled</ID>
+            <DisplayInformation>
+                <Parameters>
+                    <Parameter>
+                        <Name>serviceName</Name>
+                        <DefaultValue>svservice</DefaultValue>
+                    </Parameter>
+                </Parameters>
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="12">App Volumes Service is not installed</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="13">App Volumes Service (svservice) is not installed</dcmRS:LocalizeResourceElement>
+                </Description>
+            </DisplayInformation>
+            <Troubleshooter>
+                <Script>
+                    <Parameters>
+                        <Parameter>
+                            <Name>serviceName</Name>
+                            <DefaultValue>svservice</DefaultValue>
+                        </Parameter>
+                    </Parameters>
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>TS_RC_ServiceNotRunning.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Troubleshooter>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver2</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="14">Attempt to start App Volumes Service</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="15">Attempt to start App Volumes Service (svservice)</dcmRS:LocalizeResourceElement>
+                        </Description>
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters>
+                            <Parameter>
+                                <Name>serviceName</Name>
+                                <DefaultValue>svservice</DefaultValue>
+                            </Parameter>
+                        </Parameters>
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_ServiceNotRunning.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters>
+                        <Parameter>
+                            <Name>serviceName</Name>
+                            <DefaultValue>svservice</DefaultValue>
+                        </Parameter>
+                    </Parameters>
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>TS_RC_ServiceNotRunning.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+    </Rootcauses>
+    <Interactions>
+        <SingleResponseInteractions />
+        <MultipleResponseInteractions />
+        <TextInteractions />
+        <PauseInteractions />
+        <LaunchUIInteractions />
+    </Interactions>
+    <ExtensionPoint>
+        <Icon>
+            <dcmRS:IconResourceElement comment="" index="2">CloudVolumes.ico</dcmRS:IconResourceElement>
+        </Icon>
+    </ExtensionPoint>
+</dcmPS:AdvDiagnosticPackage>
