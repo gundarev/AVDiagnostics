@@ -333,7 +333,8 @@ Function CollectFiles($filesToCollect,
                     (' ' * 21) + '[CollectFiles] ' + $FileNameFullPath + ' could not be found' | WriteTo-StdOut -InvokeInfo $MyInvocation -ShortFormat -Color 'DarkYellow'  -noHeader
                 }
             }
-        } else 
+        }
+        else 
         {
             (' ' * 21) + '[CollectFiles] ' + $pathFilesToCollect + ': The system cannot find the file(s) specified' | WriteTo-StdOut -InvokeInfo $MyInvocation  -Color 'DarkYellow' -ShortFormat -noHeader
         }
@@ -440,11 +441,11 @@ Function RunCMD([string]$commandToRun,
                     $ProcessName = 'cmd.exe' 
                     $Arguments = "/c `"" + $commandToRun + "`""
                 }
-                $process = ProcessCreate -Process $ProcessName -Arguments $Arguments
+                $process = ProcessCreate -process $ProcessName -Arguments $Arguments
             }
             else
             {
-                $process = ProcessCreate -Process 'cmd.exe' -Arguments ("/s /c `"" + $commandToRun + "`"")
+                $process = ProcessCreate -process 'cmd.exe' -Arguments ("/s /c `"" + $commandToRun + "`"")
             }
             $process.WaitForExit()
             $StdoutOutput = $process.StandardOutput.ReadToEnd() 
@@ -501,7 +502,8 @@ Function RunCMD([string]$commandToRun,
             if ($noFileExtensionsOnDescription.isPresent)
             {
                 CollectFiles -filesToCollect $filesToCollect -fileDescription $fileDescription -sectionDescription $sectionDescription -Verbosity $Verbosity -noFileExtensionsOnDescription -renameOutput $renameOutput -InvokeInfo $MyInvocation
-            } else 
+            }
+            else 
             {
                 CollectFiles -filesToCollect $filesToCollect -fileDescription $fileDescription -sectionDescription $sectionDescription -Verbosity $Verbosity -renameOutput $renameOutput -InvokeInfo $MyInvocation
             }
@@ -535,11 +537,11 @@ Function RunCMD([string]$commandToRun,
         }
         if ($noFileExtensionsOnDescription.isPresent)
         {
-            $process = BackgroundProcessCreate -ProcessName $ProcessName -Arguments $Arguments -filesToCollect $filesToCollect -fileDescription $fileDescription -sectionDescription $sectionDescription -CollectFiles $collectFiles -Verbosity $Verbosity -renameOutput $renameOutput -TimeoutMinutes 15 -PostProcessingScriptBlock $PostProcessingScriptBlock
+            $process = BackgroundProcessCreate -ProcessName $ProcessName -Arguments $Arguments -filesToCollect $filesToCollect -fileDescription $fileDescription -sectionDescription $sectionDescription -collectFiles $collectFiles -Verbosity $Verbosity -renameOutput $renameOutput -TimeoutMinutes 15 -PostProcessingScriptBlock $PostProcessingScriptBlock
         }
         else 
         {
-            $process = BackgroundProcessCreate -ProcessName $ProcessName -Arguments $Arguments -filesToCollect $filesToCollect -fileDescription $fileDescription -sectionDescription $sectionDescription -CollectFiles $collectFiles -Verbosity $Verbosity -renameOutput $renameOutput -noFileExtensionsOnDescription -TimeoutMinutes 15 -PostProcessingScriptBlock $PostProcessingScriptBlock
+            $process = BackgroundProcessCreate -ProcessName $ProcessName -Arguments $Arguments -filesToCollect $filesToCollect -fileDescription $fileDescription -sectionDescription $sectionDescription -collectFiles $collectFiles -Verbosity $Verbosity -renameOutput $renameOutput -noFileExtensionsOnDescription -TimeoutMinutes 15 -PostProcessingScriptBlock $PostProcessingScriptBlock
         }
     }
 }
@@ -594,7 +596,7 @@ Function Run-ExternalPSScript([string]$ScriptPath,
 		
         if ($BackgroundExecution.IsPresent -eq $false)
         {	
-            $process = ProcessCreate -Process 'powershell.exe' -Arguments $PSArgumentCmdLine
+            $process = ProcessCreate -process 'powershell.exe' -Arguments $PSArgumentCmdLine
 			
             "PowerShell started with Process ID $($process.Id)" | WriteTo-StdOut -InvokeInfo $MyInvocation -ShortFormat
             '--[Stdout-Output]---------------------' | WriteTo-StdOut -InvokeInfo $MyInvocation -noHeader
@@ -630,7 +632,7 @@ Function Run-ExternalPSScript([string]$ScriptPath,
         } 
         else 
         { 
-            $process = BackgroundProcessCreate -ProcessName 'powershell.exe' -Arguments $PSArgumentCmdLine -filesToCollect $filesToCollect -fileDescription $fileDescription -sectionDescription $sectionDescription -CollectFiles $collectFiles -Verbosity $Verbosity -TimeoutMinutes $BackgroundExecutionTimeOut -PostProcessingScriptBlock $BackgroundExecutionPostProcessingScriptBlock -SkipMaxParallelDiagCheck:$BackgroundExecutionSkipMaxParallelDiagCheck -SessionName $BackgroundExecutionSessionName
+            $process = BackgroundProcessCreate -ProcessName 'powershell.exe' -Arguments $PSArgumentCmdLine -filesToCollect $filesToCollect -fileDescription $fileDescription -sectionDescription $sectionDescription -collectFiles $collectFiles -Verbosity $Verbosity -TimeoutMinutes $BackgroundExecutionTimeOut -PostProcessingScriptBlock $BackgroundExecutionPostProcessingScriptBlock -SkipMaxParallelDiagCheck:$BackgroundExecutionSkipMaxParallelDiagCheck -SessionName $BackgroundExecutionSessionName
             return $process
         }
     }
@@ -809,7 +811,7 @@ Function BackgroundProcessCreate([string]$ProcessName,
     }
 	
     #Start process in background
-    $process = ProcessCreate -Process $ProcessName -Arguments $Arguments 
+    $process = ProcessCreate -process $ProcessName -Arguments $Arguments 
 
     #Fill out Diagnostic variables so we can use in the future
     [Void] $DiagProcesses.Add($process)
@@ -909,11 +911,12 @@ Function Get-DiagBackgroundProcess($SessionName = 'AllSessions')
             {
                 $RunningDiagProcessesInSession = @()
                 $RunningDiagProcesses | ForEach-Object -Process {
-                if ($_.Id -ne $null){
-                    if (($DiagProcessesSessionNames.get_Item($_.Id) -ne $null) -and ($DiagProcessesSessionNames.get_Item($_.Id) -eq $SessionName))
+                    if ($_.Id -ne $null)
                     {
-                        $RunningDiagProcessesInSession += $_
-                    }
+                        if (($DiagProcessesSessionNames.get_Item($_.Id) -ne $null) -and ($DiagProcessesSessionNames.get_Item($_.Id) -eq $SessionName))
+                        {
+                            $RunningDiagProcessesInSession += $_
+                        }
                     }
                 }
                 return $RunningDiagProcessesInSession
@@ -1036,7 +1039,7 @@ Function ProcessCreate($process, $Arguments = '', $WorkingDirectory = $null)
     $processStartInfo.fileName = $process
     if ($Arguments.Length -ne 0) 
     {
-        $processStartInfo.Arguments = $Arguments 
+        $processStartInfo.Arguments = $Arguments
     }
     if ($WorkingDirectory -eq $null) 
     {
@@ -1481,13 +1484,15 @@ Function CompressCollectFiles
                 #Add condition to check if the $TempFolder actually exists.
                 if(($TempFolder -ne $null) -and (Test-Path -Path $TempFolder.FullName)) 
                 {
-                    Remove-Item -Path $TempFolder.FullName -Recurse 
+                    Remove-Item -Path $TempFolder.FullName -Recurse
                 }
-            } else 
+            }
+            else 
             {
                 "[CompressCollectFiles] No files found: $pathFilesToCollect" | WriteTo-StdOut -ShortFormat
             }
-        } else 
+        }
+        else 
         {
             "[CompressCollectFiles] Path not found: $pathFilesToCollect" | WriteTo-StdOut -ShortFormat
         }		
@@ -1530,11 +1535,11 @@ Function CompressCollectFiles
                 {
                     if ($DoNotCollectFile.IsPresent)
                     {
-                        RunCMD -commandToRun $commandToRun -fileDescription $fileDescription -sectionDescription $sectionDescription -filesToCollect $CompressedFileName -Verbosity $Verbosity -NoFileExtensionsOnDescription -collectFiles $false
+                        RunCMD -commandToRun $commandToRun -fileDescription $fileDescription -sectionDescription $sectionDescription -filesToCollect $CompressedFileName -Verbosity $Verbosity -noFileExtensionsOnDescription -collectFiles $false
                     }
                     else
                     {
-                        RunCMD -commandToRun $commandToRun -fileDescription $fileDescription -sectionDescription $sectionDescription -filesToCollect $CompressedFileName -Verbosity $Verbosity -NoFileExtensionsOnDescription
+                        RunCMD -commandToRun $commandToRun -fileDescription $fileDescription -sectionDescription $sectionDescription -filesToCollect $CompressedFileName -Verbosity $Verbosity -noFileExtensionsOnDescription
                     }
                 }
                 else
@@ -1756,12 +1761,14 @@ function RegQueryValue(
                 '-' * ($RegKeyLen) + "`r`n[$RegKey\$RegValue]`r`n" + '-' * ($RegKeyLen) | Out-File -FilePath $OutputFile -Append
 	
                 RunCMD -commandToRun $CommandToExecute -collectFiles $false
-            } else 
+            }
+            else 
             {
                 "        The registry value $RegKey\$RegValue does not exist" | WriteTo-StdOut -InvokeInfo $MyInvocation -ShortFormat
             }
             $CurrentMember = $CurrentMember +1			
-        } else 
+        }
+        else 
         {
             "        The registry key $RegKey does not exist" | WriteTo-StdOut -InvokeInfo $MyInvocation -ShortFormat
         }
@@ -1811,7 +1818,8 @@ function RegSave(
             $CommandToExecute = "$Env:windir\system32\reg.exe save `"$RegKey`" `"$OutputFile`" /y"
 			
             RunCMD -commandToRun $CommandToExecute -sectionDescription $sectionDescription -filesToCollect $OutputFile -fileDescription $fileDescription
-        } else 
+        }
+        else 
         {
             "[RegSave] The registry key $RegKey does not exist" | WriteTo-StdOut -ShortFormat -Color 'DarkYellow' -InvokeInfo $MyInvocation
         }
@@ -1936,7 +1944,7 @@ if($null -eq $global:m_WriteCriticalSection)
 
 function Save-AppVolReport
 {
-param ($reportpath)
+    param ($reportpath)
     <#
             .SYNOPSIS
             Short Description
@@ -1964,11 +1972,13 @@ param ($reportpath)
     [scriptblock]$ScriptBlock = 
     {
         param($procpid,$HashedId, $reportpath)
-          function FindMostRecentSubFolder([string]$folderPath) 
-        {    
-         
-    
-            $folders = Get-ChildItem -LiteralPath ($folderPath) -Force | Where-Object {$_.PSIsContainer} | Sort-Object -Descending -Property CreationTime
+        function FindMostRecentSubFolder([string]$folderPath) 
+        {
+            $folders = Get-ChildItem -LiteralPath ($folderPath) -Force |
+            Where-Object -FilterScript {
+                $_.PSIsContainer
+            } |
+            Sort-Object -Descending -Property CreationTime
             if($folders -ne $null) 
             {
                 foreach($folder in $folders) 
@@ -1997,27 +2007,34 @@ param ($reportpath)
         
         $proc.WaitForExit()
         $elevatedPath = $elevatedPath + [System.Convert]::ToString($HashedId)
-        $elevatedPath =Get-ChildItem -LiteralPath ($elevatedPath) -Force | Where-Object {$_.PSIsContainer} | Sort-Object -Descending -Property CreationTime |Select-Object -First 1 |Select-Object -ExpandProperty  Fullname
-        write-output "elevatedPath = $elevatedPath, reportpath=$reportpath"
-         [Reflection.Assembly]::LoadWithPartialName("System.Xml")
-         [Reflection.Assembly]::LoadWithPartialName("System.Xml.Xsl")
+        $elevatedPath = Get-ChildItem -LiteralPath ($elevatedPath) -Force |
+        Where-Object -FilterScript {
+            $_.PSIsContainer
+        } |
+        Sort-Object -Descending -Property CreationTime |
+        Select-Object -First 1 |
+        Select-Object -ExpandProperty  Fullname
+        Write-Output -InputObject "elevatedPath = $elevatedPath, reportpath=$reportpath"
+        [Reflection.Assembly]::LoadWithPartialName('System.Xml')
+        [Reflection.Assembly]::LoadWithPartialName('System.Xml.Xsl')
          
-        $resolver= [System.Xml.XmlUrlResolver]::new()          
-         $xsltSetting = [System.Xml.Xsl.XsltSettings]::new($true,$true) 
-         $xsltSetting.EnableScript=$true
-         $xsltSetting.EnableDocumentFunction=$true
-          $transformer=[System.Xml.Xsl.XslCompiledTransform]::new()            
+        $resolver = [System.Xml.XmlUrlResolver]::new()          
+        $xsltSetting = [System.Xml.Xsl.XsltSettings]::new($true,$true) 
+        $xsltSetting.EnableScript = $true
+        $xsltSetting.EnableDocumentFunction = $true
+        $transformer = [System.Xml.Xsl.XslCompiledTransform]::new()            
                                                                                
-         $transformer.Load("$($elevatedPath)\results.xsl",$xsltSetting,$resolver)  
-         $transformer.Transform("$($elevatedPath)\ResultReport.xml","$($elevatedPath)\ResultReport.html")   
-        try{ 
-            [Reflection.Assembly]::LoadWithPartialName("System.IO.Compression.FileSystem")
+        $transformer.Load("$($elevatedPath)\results.xsl",$xsltSetting,$resolver)  
+        $transformer.Transform("$($elevatedPath)\ResultReport.xml","$($elevatedPath)\ResultReport.html")   
+        try
+        { 
+            [Reflection.Assembly]::LoadWithPartialName('System.IO.Compression.FileSystem')
             [System.IO.Compression.ZipFile]::CreateFromDirectory( $elevatedPath,$reportpath +'.zip')
         }
-        catch{
-            write-output "Error $( $_.Exception.Message)"
+        catch
+        {
+            Write-Output -InputObject "Error $( $_.Exception.Message)"
         }
-       
     }
     
     
@@ -3250,11 +3267,11 @@ Function Write-GenericMessage
                         $Visibility = 3
                     }
 					
-#                    if (($Visibility -eq 4) -and ($PublicContentURL -eq $null))
-#                    {
-#                        $Visibility = 3
-#                        "[Write-GenericMessage] Warning: Setting Visibility to '3' instead of '4' for rule $RootCauseID once PublicContentURL is empty for this rule" | WriteTo-StdOut
-#                    }
+                    #                    if (($Visibility -eq 4) -and ($PublicContentURL -eq $null))
+                    #                    {
+                    #                        $Visibility = 3
+                    #                        "[Write-GenericMessage] Warning: Setting Visibility to '3' instead of '4' for rule $RootCauseID once PublicContentURL is empty for this rule" | WriteTo-StdOut
+                    #                    }
 					
                     $GenericMessage_XML.Objects.SetAttribute('Visibility', $Visibility)
 					
@@ -3266,7 +3283,6 @@ Function Write-GenericMessage
                     }
                     else 
                     {
-                        
                         $xmlUpdateDiagReport = [xml] '<?xml version="1.0" encoding="UTF-16"?><Root/>'
                     }
 															
@@ -4397,27 +4413,27 @@ function Get-ServiceStartup([Object]$objService)
     {
         0 
         {
-            $typeName = 'Boot' 		
+            $typeName = 'Boot'
         }
         1 
         {
-            $typeName = 'System' 		
+            $typeName = 'System'
         }
         2 
         {
-            $typeName = 'Automatic'	
+            $typeName = 'Automatic'
         }
         3 
         {
-            $typeName = 'Manual' 		
+            $typeName = 'Manual'
         }
         4 
         {
-            $typeName = 'Disabled' 	
+            $typeName = 'Disabled'
         }
         default 
         {
-            $typeName = 'Error' 		
+            $typeName = 'Error'
         }
     }
 
@@ -4425,27 +4441,27 @@ function Get-ServiceStartup([Object]$objService)
     {
         0 
         {
-            $TypeDescription = 'Loaded by kernel loader. Components of the driver stack for the boot (startup) volume must be loaded by the kernel loader.' 
+            $TypeDescription = 'Loaded by kernel loader. Components of the driver stack for the boot (startup) volume must be loaded by the kernel loader.'
         }
         1 
         {
-            $TypeDescription = 'Loaded by I/O subsystem. Specifies that the driver is loaded at kernel initialization.' 
+            $TypeDescription = 'Loaded by I/O subsystem. Specifies that the driver is loaded at kernel initialization.'
         }
         2 
         {
-            $TypeDescription = 'Loaded by Service Control Manager. Specifies that the service is loaded or started automatically.' 
+            $TypeDescription = 'Loaded by Service Control Manager. Specifies that the service is loaded or started automatically.'
         }
         3 
         {
-            $TypeDescription = 'The service does not start until the user starts it manually, such as by using Services or Devices in Control Panel. ' 
+            $TypeDescription = 'The service does not start until the user starts it manually, such as by using Services or Devices in Control Panel. '
         }
         4 
         {
-            $TypeDescription = 'Specifies that the service should not be started.' 
+            $TypeDescription = 'Specifies that the service should not be started.'
         }
         default 
         {
-            $TypeDescription = 'There was an error retrieving information about this service.' 
+            $TypeDescription = 'There was an error retrieving information about this service.'
         }
     }
 

@@ -1058,6 +1058,197 @@
             <ContextParameters />
             <ExtensionPoint />
         </Rootcause>
+        <Rootcause>
+            <ID>RC_RegistryEntryForAutorunsCheck</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="68">Detect if fail to install due to an invalid Registry entry for Autoruns</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver13</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="69">Some Applications may fail to install due to an invalid Registry entry for Autoruns</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="70">An invalid Registry entry for Autoruns was found on this machine. And this may cause some applications fail to install successfully. For additional information please see the referenced article</dcmRS:LocalizeResourceElement>
+                        </Description>
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_RegistryEntryForAutorunsCheck.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint>
+                        <RootCause>Registry entry for Autoruns is invalid</RootCause>
+                        <HighLevelLogic></HighLevelLogic>
+                        <Symptom></Symptom>
+                        <InternalContentURL></InternalContentURL>
+                        <PublicContentURL>http://support.microsoft.com/kb/102889</PublicContentURL>
+                        <Visibility>4</Visibility>
+                        <SupportTopicsID>18607</SupportTopicsID>
+                        <MessageVersion>1</MessageVersion>
+                        <AlertType>Error</AlertType>
+                    </ExtensionPoint>
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters />
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>VF_RC_RegistryEntryForAutorunsCheck.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_DisablePagingExecutiveCheck</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="71">Check if DisablePagingExecutive is enabled in the registry</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver14</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="72">DisablePagingExecutive registry value is set to 1 and may affect performance</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="73">The registry value HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\DisablePagingExecutive is currently set to 1. This value is used to enable stackwalking during a XPerf tracing session and may cause performance issues. It is recommended to remove or set this value to 0. For more information about DisablePagingExecutive, please see the referenced article.</dcmRS:LocalizeResourceElement>
+                        </Description>
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>false</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_DisablePagingExecutiveCheck.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint>
+                        <RootCause></RootCause>
+                        <HighLevelLogic>
+        Check if HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
+        DisablePagingExecutive is 1
+      </HighLevelLogic>
+                        <Symptom></Symptom>
+                        <InternalContentURL></InternalContentURL>
+                        <PublicContentURL>http://technet.microsoft.com/en-us/library/cc959492.aspx</PublicContentURL>
+                        <Visibility>4</Visibility>
+                        <SupportTopicsID>18550</SupportTopicsID>
+                        <MessageVersion>1</MessageVersion>
+                        <AlertType>Warning</AlertType>
+                    </ExtensionPoint>
+                </Resolver>
+            </Resolvers>
+            <Verifier>
+                <Script>
+                    <Parameters />
+                    <ProcessArchitecture>Any</ProcessArchitecture>
+                    <RequiresElevation>false</RequiresElevation>
+                    <RequiresInteractivity>false</RequiresInteractivity>
+                    <FileName>VF_RC_DisablePagingExecutiveCheck.ps1</FileName>
+                    <ExtensionPoint />
+                </Script>
+                <ExtensionPoint />
+            </Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_SymantecEPCheck</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="74">Check for Symantec Endpoint Protection MR1/MR2</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description />
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver15</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="75">Symantec Endpoint Protection MR1/MR2 was detected on this machine. This version is known for causing networking connectivity problems - network shares may become unresponsive after some time and errors like 'The network path was not found' and 'The specified network name is no longer available' may occur.</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description />
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_RC_SymantecEPCheck.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
+        <Rootcause>
+            <ID>RC_DumpCollector</ID>
+            <DisplayInformation>
+                <Parameters />
+                <Name>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="76">Memory Dump Related Issues</dcmRS:LocalizeResourceElement>
+                </Name>
+                <Description>
+                    <dcmRS:LocalizeResourceElement comment="This is a comment" index="77">Memory dump related information</dcmRS:LocalizeResourceElement>
+                </Description>
+            </DisplayInformation>
+            <Resolvers>
+                <Resolver>
+                    <ID>Resolver16</ID>
+                    <DisplayInformation>
+                        <Parameters />
+                        <Name>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="78">Collect memory dump information</dcmRS:LocalizeResourceElement>
+                        </Name>
+                        <Description>
+                            <dcmRS:LocalizeResourceElement comment="This is a comment" index="79">Information about memory dump or related configuration</dcmRS:LocalizeResourceElement>
+                        </Description>
+                    </DisplayInformation>
+                    <RequiresConsent>false</RequiresConsent>
+                    <Script>
+                        <Parameters />
+                        <ProcessArchitecture>Any</ProcessArchitecture>
+                        <RequiresElevation>true</RequiresElevation>
+                        <RequiresInteractivity>false</RequiresInteractivity>
+                        <FileName>RS_DumpCollector.ps1</FileName>
+                        <ExtensionPoint />
+                    </Script>
+                    <ExtensionPoint />
+                </Resolver>
+            </Resolvers>
+            <Verifier></Verifier>
+            <ContextParameters />
+            <ExtensionPoint />
+        </Rootcause>
     </Rootcauses>
     <Interactions>
         <SingleResponseInteractions>

@@ -2,27 +2,53 @@ $debug = $true
 # Load Common Library:
 $ComputerName = $Env:computername
 $OSVersion = [Environment]::OSVersion.Version
+
+
+
 . ./utils_cts.ps1
+
 
 
 $FirstTimeExecution = FirstTimeExecution
 
-if ($FirstTimeExecution) {
+if ($FirstTimeExecution) 
+{
     Run-DiagExpression .\DC_BasicSystemInformation.ps1
-    
-    $SaveReport = get-diaginput -id "I_SaveReport" 
+  
+    $SaveReport = Get-DiagInput -Id 'I_SaveReport' 
     
     if ([bool]::Parse($SaveReport))
     {
         Update-DiagRootCause -Id 'SaveReport' -Detected $true 
-        $filename = "\$($env:COMPUTERNAME)_AppVolumesDiag_$(Get-Date -Format yyyy-MM-dd_hh-mm-ss-tt)" 
+        $filename = "\$($Env:computername)_AppVolumesDiag_$(Get-Date -Format yyyy-MM-dd_hh-mm-ss-tt)" 
+
+        ################office
+        
+        Run-DiagExpression .\DC_GetOfficeProductsInstalled.ps1 
+        'Got this app to troubleshoot ' + $global:SelectedOfficeExe.ProcName | WriteTo-StdOut
+        $global:SelectedOfficeExe.Index |
+        Out-String |
+        Out-File $selectedAppPath
+	
+        Run-DiagExpression .\DC_GetPID.ps1 -ProductName "$($global:SelectedOfficeExe.RegName)" -ProductVersion $global:SelectedOfficeExe.MajorVersion
+	
+        Run-DiagExpression .\DC_BasicSystemInformation.ps1
+	
+        Set-MaxBackgroundProcesses 40
+        
+        Run-DiagExpression  .\DC_OffCAT.ps1 -NoShortcut
+        
+        ###########Office
+
+
        
         
-        $Global:reportpath=$(get-diaginput -id "I_SelectFile")[0]+$filename 
+        $Global:reportpath = $(Get-DiagInput -Id 'I_SelectFile')[0]+$filename 
         
-        $Global:SaveReport=$true
+        $Global:SaveReport = $true
         
         Run-DiagExpression .\DC_MSInfo.ps1
+        Run-DiagExpression .\DC_EnvVars.ps1
         Run-DiagExpression .\DC_PStat.ps1
         Run-DiagExpression .\DC_RegistrySetupPerf.ps1
         Run-DiagExpression .\DC_ChkSym.ps1
@@ -52,15 +78,15 @@ if ($FirstTimeExecution) {
         Run-DiagExpression .\DC_RegPrintKeys.ps1
         Run-DiagExpression .\DC_Devcon.ps1
         Run-DiagExpression .\DC_SanStorageInfo.ps1
-    
+        Run-DiagExpression .\TS_DumpCollector.ps1
         Run-DiagExpression .\DC_SystemAppEventLogs.ps1
-            
-        
-        
+        Run-DiagExpression .\DC_WinRMEventLogs.ps1
+        Run-DiagExpression .\DC_WSMANWinRMInfo.ps1
+        Run-DiagExpression .\DC_ROIScan.ps1
     } 
     else
     {
-        $Global:SaveReport=$false
+        $Global:SaveReport = $false
     }
     
 
@@ -78,21 +104,22 @@ if ($FirstTimeExecution) {
     Run-DiagExpression .\TS_RPCUnauthenticatedSessions.ps1
     Run-DiagExpression .\TS_NTFSMetafilePerfCheck.ps1
     Run-DiagExpression .\TS_KnownKernelTags.ps1
+    # [Idea ID 5194] [Windows] Unable to install vcredist_x86.exe with message (Required file install.ini not found. Setup will now exit) [AutoAdded]
+    Run-DiagExpression .\TS_RegistryEntryForAutorunsCheck.ps1
+    Run-DiagExpression .\TS_DisablePagingExecutiveCheck.ps1
     
     
         
     EndDataCollection
-
-} else {
+}
+else 
+{
     #2nd execution. Delete the temporary flag file then exit
-    WriteTo-StdOut "SecondExecutution defined"
-    EndDataCollection -DeleteFlagFile $True
+    WriteTo-StdOut 'SecondExecutution defined'
+    EndDataCollection -DeleteFlagFile $true
     
-    if ($Global:SaveReport){
-        
+    if ($Global:SaveReport)
+    {
         Save-AppVolReport $Global:reportpath
-        
     }
-
-    
 }

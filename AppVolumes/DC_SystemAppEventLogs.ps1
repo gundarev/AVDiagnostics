@@ -1,10 +1,18 @@
 ﻿
 Import-LocalizedData -BindingVariable SetupEventLogsStrings
+if ($Global:SaveReport) 
+{
+$days=5
+}
+else
+{
+$days=""
+}
+$EventLogNames = @("System","OAlerts", "Application")
 
-$EventLogNames = @("System", "Application")
 $EventLogAdvisorAlertXMLs = $SetupEventLogsStrings.ID_EPSEventLogAdvisorUnexpectedShutdown
 
-.\TS_GetEvents.ps1 -EventLogNames $EventLogNames -EventLogAdvisorAlertXMLs $EventLogAdvisorAlertXMLs
+.\TS_GetEvents.ps1 -EventLogNames $EventLogNames -EventLogAdvisorAlertXMLs $EventLogAdvisorAlertXMLs -Days $days
 # SIG # Begin signature block
 # MIIbAQYJKoZIhvcNAQcCoIIa8jCCGu4CAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR

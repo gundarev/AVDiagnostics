@@ -1,0 +1,13 @@
+<PackageConfiguration xmlns="http://www.microsoft.com/schemas/dcm/configuration/2008">
+  <Execution>
+    <Package Path="." />
+    <Name>VMware App Volumes Diagnostics</Name>
+    <Disconnected />
+  </Execution>
+  <Index>
+    <RequiresAdminPrivileges>true</RequiresAdminPrivileges>
+    <PrivacyUrl>https://www.vmware.com/help/privacy</PrivacyUrl>
+    <Version>1.0</Version>
+    <PublisherName>VMware Inc.</PublisherName>
+  </Index>
+</PackageConfiguration>
